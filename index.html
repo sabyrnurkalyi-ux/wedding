@@ -186,22 +186,6 @@
             color: #70583c;
         }
 
-        /* Дресс-код */
-        .palette-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .color-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
         /* Кнопка 2ГИС */
         .map-button {
             display: inline-block;
@@ -230,9 +214,51 @@
             line-height: 1.5;
             letter-spacing: 1px;
         }
+
+        /* Кнопка управления музыкой */
+        .music-toggle-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #70583c;
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+
+        .music-toggle-btn:hover {
+            background: #54412c;
+        }
+
+        /* Анимация пульсации, когда музыка играет */
+        .music-playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(112, 88, 60, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 4px 25px rgba(112, 88, 60, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(112, 88, 60, 0.4); }
+        }
     </style>
 </head>
 <body>
+
+<!-- Аудиоплеер (скрытый, с зацикливанием) -->
+<audio id="bg-audio" src="music.mp3" loop></audio>
+
+<!-- Плавающая кнопка музыки -->
+<button id="music-btn" class="music-toggle-btn" onclick="toggleMusic()" style="display: none;">🔊</button>
 
 <div class="phone-container">
 
@@ -255,7 +281,6 @@
                 <img src="bride.jpg" alt="Айзирек" class="bride-photo" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=600'">
             </div>
 
-            <!-- Имя невесты установлено -->
             <div class="bride-name">Айзирек</div>
             <div class="vignette">❦</div>
             <p id="t-invitation" style="font-style: italic; line-height: 1.8; font-size: 18px; color: #4a3e3d;"></p>
@@ -267,7 +292,6 @@
                 <div class="calendar-month" id="t-calendar-title">Август 2026</div>
                 <div class="calendar-grid">
                     <div style="font-weight:bold;">Пн</div><div style="font-weight:bold;">Вт</div><div style="font-weight:bold;">Ср</div><div style="font-weight:bold;">Чт</div><div style="font-weight:bold;">Пт</div><div style="font-weight:bold;">Сб</div><div style="font-weight:bold;">Вс</div>
-                    <!-- Сетка под 20 августа 2026 (четверг) -->
                     <div></div><div></div><div></div><div></div><div></div><div>1</div><div>2</div>
                     <div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
                     <div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div>
@@ -289,19 +313,7 @@
             </div>
         </div>
 
-        <!-- СЕКЦИЯ 3: ДРЕСС-КОД -->
-        <div class="section">
-            <div class="main-title" id="t-dress-title">Дресс-код</div>
-            <p id="t-dress-text" style="font-style: italic; font-size: 16px; line-height: 1.6; margin: 15px 0;"></p>
-            <div class="palette-container">
-                <div class="color-circle" style="background-color: #e3d2c4;"></div>
-                <div class="color-circle" style="background-color: #c9bca6;"></div>
-                <div class="color-circle" style="background-color: #f0e6df;"></div>
-                <div class="color-circle" style="background-color: #dfd5c6;"></div>
-            </div>
-        </div>
-
-        <!-- СЕКЦИЯ 4: МЕСТО ПРОВЕДЕНИЯ -->
+        <!-- СЕКЦИЯ 3: МЕСТО ПРОВЕДЕНИЯ -->
         <div class="section">
             <div class="main-title" id="t-location-title">Место проведения</div>
             <div class="vignette">❦</div>
@@ -315,7 +327,6 @@
         <div class="section" style="border-bottom: none; background-color: #faf6f0;">
             <div class="main-title" id="t-hosts-title">Той ээси</div>
             <div class="vignette">❦</div>
-            <!-- Имя хозяйки торжества установлено -->
             <div class="parents-names">
                 Гульжан
             </div>
@@ -333,8 +344,6 @@
             invitation: "Урматтуу кадырлуу конокторубуз! Сиздерди жүрөгүбүздүн тилеги, үй-бүлөбүздүн сыймыгы болгон кызыбыз Айзиректин узатуу тоюна арналган салтанаттуу кечебизге ак тилек менен чакырабыз.",
             timerTitle: "Салтанатка чейин калган убакыт:",
             calendarTitle: "Август айы 2026",
-            dressTitle: "Кеченин кийими",
-            dressText: "Биздин өзгөчө кечебиздин көркүн ачуу үчүн, Сиздерден төмөндөгү назик түстөрдөгү кийимдерди тандап келишиңиздерди суранабыз:",
             locationTitle: "Дарегибиз",
             mapBtn: "2GIS картадан көрүү",
             hostsTitle: "Той ээси:",
@@ -346,8 +355,6 @@
             invitation: "Дорогие и почтенные гости! Радость нашей семьи велика, и мы от всего сердца просим вас разделить с нами этот незабываемый вечер — торжественные проводы нашей любимой дочери Айзирек.",
             timerTitle: "До начала торжества осталось:",
             calendarTitle: "Август 2026",
-            dressTitle: "Дресс-код вечера",
-            dressText: "Будем признательны, если при выборе праздничного наряда вы поддержите благородную палитру нашего торжества:",
             locationTitle: "Место торжества",
             mapBtn: "Открыть карту 2GIS",
             hostsTitle: "Хозяйка торжества:",
@@ -356,14 +363,18 @@
         }
     };
 
-    // Целевая дата: 20 августа 2026, 18:00
     const targetDate = new Date(2026, 7, 20, 18, 0, 0).getTime();
+    const audio = document.getElementById('bg-audio');
+    const musicBtn = document.getElementById('music-btn');
 
     function selectLanguage(lang) {
+        playMusic();
+
         document.getElementById('language-screen').style.opacity = '0';
         setTimeout(() => {
             document.getElementById('language-screen').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
+            musicBtn.style.display = 'flex';
             window.scrollTo(0, 0);
 
             initScrollAnimation();
@@ -373,8 +384,6 @@
         document.getElementById('t-invitation').innerText = translations[lang].invitation;
         document.getElementById('t-calendar-title').innerText = translations[lang].calendarTitle;
         document.getElementById('t-timer-title').innerText = translations[lang].timerTitle;
-        document.getElementById('t-dress-title').innerText = translations[lang].dressTitle;
-        document.getElementById('t-dress-text').innerText = translations[lang].dressText;
         document.getElementById('t-location-title').innerText = translations[lang].locationTitle;
         document.getElementById('t-map-btn').innerText = translations[lang].mapBtn;
         document.getElementById('t-hosts-title').innerText = translations[lang].hostsTitle;
@@ -386,6 +395,27 @@
         document.getElementById('lbl-secs').innerText = translations[lang].secs;
 
         startTimer();
+    }
+
+    function playMusic() {
+        audio.play().then(() => {
+            musicBtn.classList.add('music-playing');
+            musicBtn.innerText = "⏸";
+        }).catch(error => {
+            console.log("Автовоспроизведение заблокировано:", error);
+        });
+    }
+
+    function toggleMusic() {
+        if (audio.paused) {
+            audio.play();
+            musicBtn.classList.add('music-playing');
+            musicBtn.innerText = "⏸";
+        } else {
+            audio.pause();
+            musicBtn.classList.remove('music-playing');
+            musicBtn.innerText = "▶";
+        }
     }
 
     function initScrollAnimation() {
