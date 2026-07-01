@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приглашение / Чакыруу</title>
-    <!-- Подключаем винтажный шрифт с засечками из Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -74,21 +73,19 @@
             display: none;
         }
 
-        /* ТРЕНД: Стили для плавного появления глав */
+        /* Стили для плавного появления глав при скролле */
         .section {
             padding: 70px 25px;
             text-align: center;
             border-bottom: 1px double #e0d5c1;
             position: relative;
 
-            /* Изначально секция скрыта и сдвинута немного вниз */
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000),
                         transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
         }
 
-        /* Класс, который автоматически добавится при прокрутке */
         .section.fade-in-visible {
             opacity: 1;
             transform: translateY(0);
@@ -222,23 +219,29 @@
         .map-button:hover {
             background: #54412c;
         }
+
+        /* Стиль для имен родителей внизу */
+        .parents-names {
+            font-size: 24px;
+            font-style: italic;
+            color: #4a3319;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
 
 <div class="phone-container">
 
-    <!-- ЭКРАН ВЫБОРА ЯЗЫКА -->
     <div id="language-screen">
         <div class="welcome-title">Кош келиңиздер!<br>Добро пожаловать!</div>
         <button class="lang-btn" onclick="selectLanguage('kg')">Кыргызча</button>
         <button class="lang-btn" onclick="selectLanguage('ru')">Русский</button>
     </div>
 
-    <!-- ГЛАВНЫЙ КОНТЕНТ (СКРОЛЛ-СТРАНИЦА) -->
     <div id="main-content">
 
-        <!-- СЕКЦИЯ 1: ОБЛОЖКА С ФОТО -->
         <div class="section">
             <div class="main-title" id="t-event-type"></div>
             <div class="vignette">❦</div>
@@ -252,7 +255,6 @@
             <p id="t-invitation" style="font-style: italic; line-height: 1.8; font-size: 18px; color: #4a3e3d;"></p>
         </div>
 
-        <!-- СЕКЦИЯ 2: ДАТА И ТАЙМЕР -->
         <div class="section">
             <div class="calendar-box">
                 <div class="calendar-month" id="t-calendar-title">Август 2026</div>
@@ -261,8 +263,10 @@
                     <div></div><div></div><div></div><div></div><div></div><div>1</div><div>2</div>
                     <div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
                     <div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div>
-                    <div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div>
-                    <div>24</div><div class="selected-date">25</div><div>26</div><div>27</div><div>28</div><div>29</div><div>30</div><div>31</div>
+                    <div>17</div><div>18</div><div>19</div>
+                    <div class="selected-date">20</div>
+                    <div>21</div><div>22</div><div>23</div>
+                    <div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div>29</div><div>30</div><div>31</div>
                 </div>
             </div>
 
@@ -277,7 +281,6 @@
             </div>
         </div>
 
-        <!-- СЕКЦИЯ 3: ДРЕСС-КОД -->
         <div class="section">
             <div class="main-title" id="t-dress-title">Дресс-код</div>
             <p id="t-dress-text" style="font-style: italic; font-size: 16px; line-height: 1.6; margin: 15px 0;"></p>
@@ -289,14 +292,23 @@
             </div>
         </div>
 
-        <!-- СЕКЦИЯ 4: МЕСТО ПРОВЕДЕНИЯ -->
-        <div class="section" style="border-bottom: none;">
+        <div class="section">
             <div class="main-title" id="t-location-title">Место проведения</div>
             <div class="vignette">❦</div>
             <p style="font-size: 22px; font-style: italic; margin-bottom: 5px; color: #4a3319;">Ресторан "Ала-Тоо"</p>
             <p style="font-style: italic; color: #70583c; margin-top: 0;">г. Бишкек, ул. Махатмы Ганди, 135</p>
 
             <a href="https://2gis.kg/bishkek/search/Рестораны" target="_blank" class="map-button" id="t-map-btn">Открыть в 2GIS</a>
+        </div>
+
+        <div class="section" style="border-bottom: none; background-color: #faf6f0;">
+            <div class="main-title" id="t-hosts-title">Той ээлери</div>
+            <div class="vignette">❦</div>
+            <div class="parents-names">
+                Ильичбек & Атыркул
+            </div>
+            <div class="vignette" style="margin-top: 10px;">❧</div>
+            <p id="t-hosts-footer" style="font-style: italic; font-size: 15px; color: #70583c; margin-top: 5px;"></p>
         </div>
 
     </div>
@@ -313,6 +325,8 @@
             dressText: "Биздин өзгөчө кечебиздин көркүн ачуу үчүн, Сиздерден төмөндөгү назик түстөрдөгү кийимдерди тандап келишиңиздерди суранабыз:",
             locationTitle: "Дарегибиз",
             mapBtn: "2GIS картадан көрүү",
+            hostsTitle: "Той ээлери:",
+            hostsFooter: "Сиздерди урматтоо менен күтөбүз!",
             days: "Күн", hours: "Саат", mins: "Мүнөт", secs: "Сек"
         },
         ru: {
@@ -324,11 +338,14 @@
             dressText: "Будем признательны, если при выборе праздничного наряда вы поддержите благородную палитру нашего торжества:",
             locationTitle: "Место торжества",
             mapBtn: "Открыть карту 2GIS",
+            hostsTitle: "Хозяева торжества:",
+            hostsFooter: "С уважением и почтением ждем вас!",
             days: "Дней", hours: "Часов", mins: "Минут", secs: "Секунд"
         }
     };
 
-    const targetDate = new Date(2026, 7, 25, 18, 0, 0).getTime();
+    // Изменено на новую дату: 20 августа 2026 года, 18:00
+    const targetDate = new Date(2026, 7, 20, 18, 0, 0).getTime();
 
     function selectLanguage(lang) {
         document.getElementById('language-screen').style.opacity = '0';
@@ -337,7 +354,6 @@
             document.getElementById('main-content').style.display = 'block';
             window.scrollTo(0, 0);
 
-            // Включаем слежку за скроллом ПОСЛЕ выбора языка
             initScrollAnimation();
         }, 600);
 
@@ -349,6 +365,8 @@
         document.getElementById('t-dress-text').innerText = translations[lang].dressText;
         document.getElementById('t-location-title').innerText = translations[lang].locationTitle;
         document.getElementById('t-map-btn').innerText = translations[lang].mapBtn;
+        document.getElementById('t-hosts-title').innerText = translations[lang].hostsTitle;
+        document.getElementById('t-hosts-footer').innerText = translations[lang].hostsFooter;
 
         document.getElementById('lbl-days').innerText = translations[lang].days;
         document.getElementById('lbl-hours').innerText = translations[lang].hours;
@@ -358,21 +376,20 @@
         startTimer();
     }
 
-    // ТРЕНД: Функция анимации при прокрутке страницы
     function initScrollAnimation() {
         const sections = document.querySelectorAll('.section');
 
         const options = {
-            root: null, // следим относительно экрана телефона
-            threshold: 0.15, // анимируем, когда 15% секции показалось снизу
-            rootMargin: "0px 0px -50px 0px" // легкий отступ снизу для мягкости эффекта
+            root: null,
+            threshold: 0.12, // Начинает плавное появление чуть раньше для комфортного скролла
+            rootMargin: "0px 0px -40px 0px"
         };
 
         const observer = new IntersectionObserver(function(entries, observer) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('fade-in-visible');
-                    observer.unobserve(entry.target); // перестаем следить, когда блок уже открылся
+                    observer.unobserve(entry.target);
                 }
             });
         }, options);
