@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приглашение / Чакыруу</title>
+    <!-- Подключаем винтажный шрифт с засечками из Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -220,13 +221,14 @@
             background: #54412c;
         }
 
-        /* Стиль для имен родителей внизу */
+        /* Стиль для имени внизу */
         .parents-names {
-            font-size: 24px;
+            font-size: 26px;
             font-style: italic;
             color: #4a3319;
             margin: 10px 0;
             line-height: 1.5;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -234,32 +236,38 @@
 
 <div class="phone-container">
 
+    <!-- ЭКРАН ВЫБОРА ЯЗЫКА -->
     <div id="language-screen">
         <div class="welcome-title">Кош келиңиздер!<br>Добро пожаловать!</div>
         <button class="lang-btn" onclick="selectLanguage('kg')">Кыргызча</button>
         <button class="lang-btn" onclick="selectLanguage('ru')">Русский</button>
     </div>
 
+    <!-- ГЛАВНЫЙ КОНТЕНТ (СКРОЛЛ-СТРАНИЦА) -->
     <div id="main-content">
 
+        <!-- СЕКЦИЯ 1: ОБЛОЖКА С ФОТО -->
         <div class="section">
             <div class="main-title" id="t-event-type"></div>
             <div class="vignette">❦</div>
 
             <div class="bride-photo-container">
-                <img src="bride.jpg" alt="Невеста" class="bride-photo" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=600'">
+                <img src="bride.jpg" alt="Айзирек" class="bride-photo" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=600'">
             </div>
 
-            <div class="bride-name">[Имя Невесты]</div>
+            <!-- Имя невесты установлено -->
+            <div class="bride-name">Айзирек</div>
             <div class="vignette">❦</div>
             <p id="t-invitation" style="font-style: italic; line-height: 1.8; font-size: 18px; color: #4a3e3d;"></p>
         </div>
 
+        <!-- СЕКЦИЯ 2: ДАТА И ТАЙМЕР -->
         <div class="section">
             <div class="calendar-box">
                 <div class="calendar-month" id="t-calendar-title">Август 2026</div>
                 <div class="calendar-grid">
                     <div style="font-weight:bold;">Пн</div><div style="font-weight:bold;">Вт</div><div style="font-weight:bold;">Ср</div><div style="font-weight:bold;">Чт</div><div style="font-weight:bold;">Пт</div><div style="font-weight:bold;">Сб</div><div style="font-weight:bold;">Вс</div>
+                    <!-- Сетка под 20 августа 2026 (четверг) -->
                     <div></div><div></div><div></div><div></div><div></div><div>1</div><div>2</div>
                     <div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
                     <div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div>
@@ -281,6 +289,7 @@
             </div>
         </div>
 
+        <!-- СЕКЦИЯ 3: ДРЕСС-КОД -->
         <div class="section">
             <div class="main-title" id="t-dress-title">Дресс-код</div>
             <p id="t-dress-text" style="font-style: italic; font-size: 16px; line-height: 1.6; margin: 15px 0;"></p>
@@ -292,6 +301,7 @@
             </div>
         </div>
 
+        <!-- СЕКЦИЯ 4: МЕСТО ПРОВЕДЕНИЯ -->
         <div class="section">
             <div class="main-title" id="t-location-title">Место проведения</div>
             <div class="vignette">❦</div>
@@ -301,11 +311,13 @@
             <a href="https://2gis.kg/bishkek/search/Рестораны" target="_blank" class="map-button" id="t-map-btn">Открыть в 2GIS</a>
         </div>
 
+        <!-- РАЗДЕЛ: ТОЙ ЭЭСИ (В самом низу) -->
         <div class="section" style="border-bottom: none; background-color: #faf6f0;">
-            <div class="main-title" id="t-hosts-title">Той ээлери</div>
+            <div class="main-title" id="t-hosts-title">Той ээси</div>
             <div class="vignette">❦</div>
+            <!-- Имя хозяйки торжества установлено -->
             <div class="parents-names">
-                Ильичбек & Атыркул
+                Гульжан
             </div>
             <div class="vignette" style="margin-top: 10px;">❧</div>
             <p id="t-hosts-footer" style="font-style: italic; font-size: 15px; color: #70583c; margin-top: 5px;"></p>
@@ -318,33 +330,33 @@
     const translations = {
         kg: {
             eventType: "Кыз Узатуу Салтанатына Чакыруу",
-            invitation: "Урматтуу кадырлуу конокторубуз! Сиздерди жүрөгүбүздүн тилеги, үй-бүлөбүздүн сыймыгы болгон кызыбыздын узатуу тоюна арналган салтанаттуу кечебизге ак тилек менен чакырабыз.",
+            invitation: "Урматтуу кадырлуу конокторубуз! Сиздерди жүрөгүбүздүн тилеги, үй-бүлөбүздүн сыймыгы болгон кызыбыз Айзиректин узатуу тоюна арналган салтанаттуу кечебизге ак тилек менен чакырабыз.",
             timerTitle: "Салтанатка чейин калган убакыт:",
             calendarTitle: "Август айы 2026",
             dressTitle: "Кеченин кийими",
             dressText: "Биздин өзгөчө кечебиздин көркүн ачуу үчүн, Сиздерден төмөндөгү назик түстөрдөгү кийимдерди тандап келишиңиздерди суранабыз:",
             locationTitle: "Дарегибиз",
             mapBtn: "2GIS картадан көрүү",
-            hostsTitle: "Той ээлери:",
+            hostsTitle: "Той ээси:",
             hostsFooter: "Сиздерди урматтоо менен күтөбүз!",
             days: "Күн", hours: "Саат", mins: "Мүнөт", secs: "Сек"
         },
         ru: {
             eventType: "Приглашение на Кыз Узатуу",
-            invitation: "Дорогие и почтенные гости! Радость нашей семьи велика, и мы от всего сердца просим вас разделить с нами этот незабываемый вечер — торжественные проводы нашей любимой дочери.",
+            invitation: "Дорогие и почтенные гости! Радость нашей семьи велика, и мы от всего сердца просим вас разделить с нами этот незабываемый вечер — торжественные проводы нашей любимой дочери Айзирек.",
             timerTitle: "До начала торжества осталось:",
             calendarTitle: "Август 2026",
             dressTitle: "Дресс-код вечера",
             dressText: "Будем признательны, если при выборе праздничного наряда вы поддержите благородную палитру нашего торжества:",
             locationTitle: "Место торжества",
             mapBtn: "Открыть карту 2GIS",
-            hostsTitle: "Хозяева торжества:",
+            hostsTitle: "Хозяйка торжества:",
             hostsFooter: "С уважением и почтением ждем вас!",
             days: "Дней", hours: "Часов", mins: "Минут", secs: "Секунд"
         }
     };
 
-    // Изменено на новую дату: 20 августа 2026 года, 18:00
+    // Целевая дата: 20 августа 2026, 18:00
     const targetDate = new Date(2026, 7, 20, 18, 0, 0).getTime();
 
     function selectLanguage(lang) {
@@ -381,7 +393,7 @@
 
         const options = {
             root: null,
-            threshold: 0.12, // Начинает плавное появление чуть раньше для комфортного скролла
+            threshold: 0.12,
             rootMargin: "0px 0px -40px 0px"
         };
 
