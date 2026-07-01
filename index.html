@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение / Чакыруу</title>
+    <!-- Подключаем шрифты из Google Fonts: Playfair Display для основного текста и Marck Script для каллиграфии -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Аудиоплеер (скрытый, с зацикливанием) -->
+<audio id="bg-audio" src="music.mp3" loop></audio>
+
+<!-- Плавающая кнопка музыки (винил) -->
+<button id="music-btn" class="music-toggle-btn" onclick="toggleMusic()"></button>
+
+<div class="phone-container">
+
+    <!-- ЭКРАН ВЫБОРА ЯЗЫКА -->
+    <div id="language-screen">
+        <div class="welcome-title">Кош келиңиздер!<br>Добро пожаловать!</div>
+        <button class="lang-btn" onclick="selectLanguage('kg')">Кыргызча</button>
+        <button class="lang-btn" onclick="selectLanguage('ru')">Русский</button>
+    </div>
+
+    <!-- ЭКРАН С КОНВЕРТОМ -->
+    <div id="envelope-screen">
+        <div class="envelope-wrapper" onclick="openEnvelope()">
+            <div class="envelope-flap"></div>
+            <div class="envelope-pocket"></div>
+            <div class="letter-card">
+                <div class="letter-initials">A</div>
+                <div class="letter-tap-text" id="envelope-tap-msg">Нажмите, чтобы открыть</div>
+            </div>
+            <div class="wax-seal">A</div>
+        </div>
+    </div>
+
+    <!-- ГЛАВНЫЙ КОНТЕНТ (СКРОЛЛ-СТРАНИЦА) -->
+    <div id="main-content">
+
+        <!-- СЕКЦИЯ 1: ОБЛОЖКА С ФОТО -->
+        <div class="section">
+            <div class="main-title" id="t-event-type">Приглашение</div>
+            <div class="vignette">❦</div>
+
+            <div class="bride-photo-container">
+                <img src="bride.jpg" alt="Айзирек" class="bride-photo" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=600'">
+            </div>
+
+            <div class="bride-name">Айзирек</div>
+            <div class="vignette">❦</div>
+            <p id="t-invitation" style="font-style: italic; line-height: 1.8; font-size: 18px; color: #4a3e3d;"></p>
+        </div>
+
+        <!-- СЕКЦИЯ 2: ДАТА И ТАЙМЕР -->
+        <div class="section">
+            <div class="calendar-box">
+                <div class="calendar-month" id="t-calendar-title">Август 2026</div>
+                <div class="calendar-grid">
+                    <div style="font-weight:bold;">Пн</div><div style="font-weight:bold;">Вт</div><div style="font-weight:bold;">Ср</div><div style="font-weight:bold;">Чт</div><div style="font-weight:bold;">Пт</div><div style="font-weight:bold;">Сб</div><div style="font-weight:bold;">Вс</div>
+                    <div></div><div></div><div></div><div></div><div></div><div>1</div><div>2</div>
+                    <div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
+                    <div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div>
+                    <div>17</div><div>18</div><div>19</div>
+                    <div class="selected-date">20</div>
+                    <div>21</div><div>22</div><div>23</div>
+                    <div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div>29</div><div>30</div><div>31</div>
+                </div>
+            </div>
+
+            <div class="vignette">❧</div>
+            <h3 id="t-timer-title" style="font-weight: normal; font-style: italic; color: #70583c;"></h3>
+
+            <div class="timer-container">
+                <div class="timer-item"><span class="timer-num" id="days">00</span><span class="timer-label" id="lbl-days"></span></div>
+                <div class="timer-item"><span class="timer-num" id="hours">00</span><span class="timer-label" id="lbl-hours"></span></div>
+                <div class="timer-item"><span class="timer-num" id="minutes">00</span><span class="timer-label" id="lbl-mins"></span></div>
+                <div class="timer-item"><span class="timer-num" id="seconds">00</span><span class="timer-label" id="lbl-secs"></span></div>
+            </div>
+        </div>
+
+        <!-- СЕКЦИЯ 3: ПРОГРАММА ВЕЧЕРА (Timeline) -->
+        <div class="section">
+            <div class="main-title" id="t-timeline-title">Программа вечера</div>
+            <div class="vignette">❦</div>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-time" id="t-time-1">18:00</div>
+                    <div class="timeline-text" id="t-text-1">Сбор гостей</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time" id="t-time-2">18:30</div>
+                    <div class="timeline-text" id="t-text-2">Начало торжества</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time" id="t-time-3">19:00</div>
+                    <div class="timeline-text" id="t-text-3">Банкет и шоу-программа</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time" id="t-time-4">21:30</div>
+                    <div class="timeline-text" id="t-text-4">Традиционные обряды</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time" id="t-time-5">22:30</div>
+                    <div class="timeline-text" id="t-text-5">Проводы невесты (Узатуу)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЕКЦИЯ 4: ДРЕСС-КОД -->
+        <div class="section">
+            <div class="main-title" id="t-dress-code-title">Дресс-код</div>
+            <div class="vignette">❦</div>
+            <p id="t-dress-code-text" style="font-style: italic; color: #4a3e3d; line-height: 1.6; font-size: 15px; margin: 0 10px;"></p>
+            <div class="color-palette">
+                <div class="color-circle" style="background-color: #f3e5ab;" title="Champagne"></div>
+                <div class="color-circle" style="background-color: #ecd5c5;" title="Dusty Rose"></div>
+                <div class="color-circle" style="background-color: #d8cfc4;" title="Sand"></div>
+                <div class="color-circle" style="background-color: #b2bea7;" title="Sage Green"></div>
+                <div class="color-circle" style="background-color: #cfb53b;" title="Soft Gold"></div>
+            </div>
+        </div>
+
+        <!-- СЕКЦИЯ 5: МЕСТО ПРОВЕДЕНИЯ -->
+        <div class="section">
+            <div class="main-title" id="t-location-title">Место торжества</div>
+            <div class="vignette">❦</div>
+            <p style="font-size: 22px; font-style: italic; margin-bottom: 5px; color: #4a3319;">Ресторан "Ала-Тоо"</p>
+            <p style="font-style: italic; color: #70583c; margin-top: 0;">г. Бишкек, ул. Махатмы Ганди, 135</p>
+
+            <a href="https://2gis.kg/bishkek/search/Рестораны" target="_blank" class="map-button" id="t-map-btn">Открыть в 2GIS</a>
+        </div>
+
+        <!-- СЕКЦИЯ 6: RSVP ПОДТВЕРЖДЕНИЕ -->
+        <div class="section">
+            <div class="main-title" id="t-rsvp-title">Подтверждение присутствия</div>
+            <div class="vignette">❦</div>
+            <p id="t-rsvp-text" style="font-style: italic; color: #70583c; font-size: 15px; margin-bottom: 20px; line-height: 1.6;"></p>
+            
+            <div class="rsvp-form">
+                <!-- Скрытое поле-ловушка для FormSubmit (защита от спама) -->
+                <input type="text" name="_honey" style="display:none">
+                
+                <input type="text" id="rsvp-name" class="rsvp-input" required>
+                
+                <label for="rsvp-status" id="t-rsvp-status-label" style="display: block; text-align: left; margin-bottom: 5px; color: #70583c; font-size: 14px; font-style: italic;"></label>
+                <select id="rsvp-status" class="rsvp-select" onchange="toggleDrinkSelect(this.value)">
+                    <option value="yes" id="rsvp-yes"></option>
+                    <option value="couple" id="rsvp-couple"></option>
+                    <option value="no" id="rsvp-no"></option>
+                </select>
+
+                <div id="drink-selection-group">
+                    <label for="rsvp-drink" id="t-rsvp-drink-label" style="display: block; text-align: left; margin-bottom: 5px; color: #70583c; font-size: 14px; font-style: italic;"></label>
+                    <select id="rsvp-drink" class="rsvp-select">
+                        <option value="nonalc" id="rsvp-drink-nonalc"></option>
+                        <option value="wine" id="rsvp-drink-wine"></option>
+                        <option value="champ" id="rsvp-drink-champ"></option>
+                        <option value="strong" id="rsvp-drink-strong"></option>
+                    </select>
+                </div>
+
+                <button type="button" id="rsvp-submit-btn" class="rsvp-submit" onclick="sendRSVP()">
+                    <span id="rsvp-btn-text"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- РАЗДЕЛ: ТОЙ ЭЭСИ -->
+        <div class="section" style="border-bottom: none; background-color: #faf6f0;">
+            <div class="main-title" id="t-hosts-title">Той ээси</div>
+            <div class="vignette">❦</div>
+            <div class="parents-names">
+                Гульжан
+            </div>
+            <div class="vignette" style="margin-top: 10px;">❧</div>
+            <p id="t-hosts-footer" style="font-style: italic; font-size: 15px; color: #70583c; margin-top: 5px;"></p>
+        </div>
+
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО УСПЕШНОЙ ОТПРАВКИ -->
+<div id="success-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-icon">❦</div>
+        <div class="modal-title" id="t-modal-title">Спасибо!</div>
+        <div class="modal-text" id="t-modal-text">Ваш ответ успешно сохранен. Мы с нетерпением ждем встречи с вами!</div>
+        <button class="modal-btn" onclick="closeModal()" id="t-modal-btn">Закрыть</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
